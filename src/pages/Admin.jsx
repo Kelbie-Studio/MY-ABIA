@@ -1,6 +1,6 @@
 export default function Admin() {
   return (
-    <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white font-serif antialiased overflow-x-hidden transition-colors duration-200">
+    <div className="bg-white dark:bg-dark-900 text-gray-900 dark:text-white font-sans antialiased overflow-x-hidden transition-colors duration-200">
       <section className="w-full mt-10 md:mt-20 mb-10 pb-10 leading-tight">
         <div className="px-4 sm:px-6 py-10 mx-auto max-w-7xl animate-fade-up">
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6 leading-tight">Admin dashboard</h1>

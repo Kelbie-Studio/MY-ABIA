@@ -1,6 +1,6 @@
 export default function Government() {
   return (
-    <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white font-serif antialiased overflow-x-hidden transition-colors duration-200">
+    <div className="bg-white dark:bg-dark-900 text-gray-900 dark:text-white font-sans antialiased overflow-x-hidden transition-colors duration-200">
       <section className="w-full mt-10 mb-20">
         <div className="max-w-7xl mx-auto px-4">
           <div
@@ -30,7 +30,7 @@ export default function Government() {
           <div className="flex flex-col gap-12">
             {/* Governor's Card */}
             <div className="flex flex-col md:flex-row items-center border border-black dark:border-gray-700 card-hover animate-fade-up">
-              <div className="w-full md:w-1/2 h-64 md:h-auto bg-gray-100 dark:bg-gray-800 flex items-center justify-center overflow-hidden relative group">
+              <div className="w-full md:w-1/2 h-64 md:h-auto bg-gray-100 dark:bg-dark-800 flex items-center justify-center overflow-hidden relative group">
                 <img
                   src="https://i.pinimg.com/736x/92/1d/9e/921d9ede0c07b3b6989b43515bab8f1e.jpg"
                   alt="His Excellency, Dr. Alex Otti"
@@ -92,7 +92,7 @@ export default function Government() {
               }
             ].map((section, idx) => (
               <div key={idx} className={`flex flex-col ${section.reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-center border border-black dark:border-gray-700 card-hover animate-fade-up`}>
-                <div className="w-full md:w-1/2 h-64 md:h-auto bg-gray-100 dark:bg-gray-800 flex items-center justify-center overflow-hidden relative group">
+                <div className="w-full md:w-1/2 h-64 md:h-auto bg-gray-100 dark:bg-dark-800 flex items-center justify-center overflow-hidden relative group">
                   <img src={section.img} alt={section.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                 </div>
                 <div className="w-full md:w-1/2 p-8 md:p-12">

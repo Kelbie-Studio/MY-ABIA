@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export default function HospitalDetails() {
   return (
-    <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white font-serif antialiased flex flex-col min-h-screen overflow-x-hidden transition-colors duration-200">
+    <div className="bg-white dark:bg-dark-900 text-gray-900 dark:text-white font-sans antialiased flex flex-col min-h-screen overflow-x-hidden transition-colors duration-200">
       {/* Hero Section */}
       <section
         style={{
@@ -38,7 +38,7 @@ export default function HospitalDetails() {
       </section>
 
       {/* Info Section */}
-      <section className="py-16 md:py-24 bg-white dark:bg-gray-900">
+      <section className="py-16 md:py-24 bg-white dark:bg-dark-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 items-center">
             <div className="animate-fade-up">
@@ -76,7 +76,7 @@ export default function HospitalDetails() {
               </div>
             </div>
 
-            <div className="aspect-square bg-gray-100 dark:bg-gray-800 overflow-hidden shadow-lg rounded-xl group animate-fade-up" style={{ animationDelay: '200ms' }}>
+            <div className="aspect-square bg-gray-100 dark:bg-dark-800 overflow-hidden shadow-lg rounded-xl group animate-fade-up" style={{ animationDelay: '200ms' }}>
               <img
                 src="https://images.unsplash.com/photo-1527613426441-4da17471b66d?q=80&w=1000&auto=format&fit=crop"
                 alt="Medical Services"
@@ -88,7 +88,7 @@ export default function HospitalDetails() {
       </section>
 
       {/* Map Section */}
-      <section className="py-16 md:py-24 bg-gray-50 dark:bg-gray-800">
+      <section className="py-16 md:py-24 bg-gray-50 dark:bg-dark-800">
         <div className="max-w-3xl mx-auto text-center px-4 mb-10">
           <div className="flex justify-center mb-4">
             <div className="p-3 bg-white dark:bg-gray-700 rounded-full shadow-sm">
@@ -117,7 +117,7 @@ export default function HospitalDetails() {
       </section>
 
       {/* Back to health page */}
-      <div className="py-12 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 text-center">
+      <div className="py-12 bg-white dark:bg-dark-900 border-t border-gray-200 dark:border-gray-800 text-center">
         <Link to="/health" className="inline-flex items-center text-lg font-bold text-green-600 hover:underline">
           <i className="bi bi-chevron-left mr-2"></i> Back to Health Services
         </Link>

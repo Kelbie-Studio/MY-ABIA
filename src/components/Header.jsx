@@ -1,137 +1,228 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 15);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const closeMenu = () => {
     setIsMobileMenuOpen(false);
     setIsCategoriesOpen(false);
   };
 
-  return (
-    <nav className="border-b border-gray-200 dark:border-gray-700 sticky top-0 bg-white dark:bg-gray-900 z-50 shadow-lg transition-colors duration-200">
-      <div className="px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20 gap-4">
+  const navLinks = [
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' },
+    { name: 'Government', path: '/government' },
+    { name: 'Announcements', path: '/announcements' },
+    { name: 'Emergency', path: '/emergency' },
+  ];
 
-          <div className="flex-shrink-0 md:mr-3">
-            <Link to="/" onClick={closeMenu} className="text-3xl font-bold italic text-gray-900 dark:text-white flex items-center">
-              <span className="mr-2 text-green-600"><i className="bi bi-ubuntu"></i></span>My Abia
+  const categories = [
+    { to: '/health', label: 'Health & Hospitals', icon: 'bi-heart-pulse-fill', color: 'text-red-500 bg-red-50 dark:bg-red-950/40' },
+    { to: '/education', label: 'Schools & Education', icon: 'bi-mortarboard-fill', color: 'text-blue-500 bg-blue-50 dark:bg-blue-950/40' },
+    { to: '/business', label: 'Business & Economy', icon: 'bi-briefcase-fill', color: 'text-emerald-500 bg-emerald-50 dark:bg-emerald-950/40' },
+    { to: '/markets', label: 'Markets & Trade', icon: 'bi-shop', color: 'text-amber-500 bg-amber-50 dark:bg-amber-950/40' },
+    { to: '/restaurants', label: 'Food & Dining', icon: 'bi-cup-hot-fill', color: 'text-orange-500 bg-orange-50 dark:bg-orange-950/40' },
+    { to: '/tourism', label: 'Tourism & Culture', icon: 'bi-compass-fill', color: 'text-indigo-500 bg-indigo-50 dark:bg-indigo-950/40' },
+  ];
+
+  return (
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      scrolled
+        ? 'bg-white/95 dark:bg-dark-900/95 backdrop-blur-md shadow-sm border-b border-slate-100 dark:border-slate-800 py-3'
+        : 'bg-white/90 dark:bg-dark-900/90 backdrop-blur-sm border-b border-slate-100 dark:border-slate-800 py-4'
+    }`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center">
+
+          {/* Logo */}
+          <Link to="/" onClick={closeMenu} className="flex items-center gap-3 group">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-700 to-brand-500 flex items-center justify-center text-white shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform">
+              <i className="bi bi-crosshair2 text-xl font-bold"></i>
+            </div>
+            <div>
+              <span className="text-xs uppercase tracking-widest font-extrabold text-brand-600 dark:text-brand-400 block leading-none">
+                State Directory
+              </span>
+              <span className="text-xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+                MY<span className="text-brand-600">ABIA</span>
+              </span>
+            </div>
+          </Link>
+
+          {/* Center Navigation Links (Anaverse style with active indicator) */}
+          <div className="hidden lg:flex items-center gap-1 xl:gap-2">
+            {navLinks.map((link) => {
+              const isActive = location.pathname === link.path;
+              return (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  className={`relative px-3.5 py-2 text-sm font-semibold transition-colors ${
+                    isActive
+                      ? 'text-brand-700 dark:text-brand-400'
+                      : 'text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white'
+                  }`}
+                >
+                  {link.name}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-brand-600 rounded-full animate-fade-up"></span>
+                  )}
+                </Link>
+              );
+            })}
+
+            {/* Categories Dropdown */}
+            <div className="relative group">
+              <button
+                className="flex items-center gap-1.5 px-3.5 py-2 text-sm font-semibold text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors"
+              >
+                Categories
+                <i className="bi bi-chevron-down text-xs transition-transform duration-200 group-hover:rotate-180"></i>
+              </button>
+
+              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 bg-white dark:bg-dark-800 rounded-2xl shadow-xl shadow-slate-900/10 border border-slate-100 dark:border-slate-700 p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 translate-y-2 group-hover:translate-y-0">
+                <div className="p-2 border-b border-slate-100 dark:border-slate-700 mb-1">
+                  <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Explore Abia State</p>
+                </div>
+                <div className="grid grid-cols-1 gap-1">
+                  {categories.map((cat) => (
+                    <Link
+                      key={cat.to}
+                      to={cat.to}
+                      className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700/60 transition-colors group/item"
+                    >
+                      <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${cat.color} group-hover/item:scale-110 transition-transform`}>
+                        <i className={`bi ${cat.icon}`}></i>
+                      </div>
+                      <span className="text-sm font-semibold text-slate-700 dark:text-slate-200 group-hover/item:text-brand-600">
+                        {cat.label}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Action Buttons */}
+          <div className="hidden lg:flex items-center gap-3">
+            {/* Theme Toggle */}
+            <button
+              onClick={toggleTheme}
+              className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-dark-800 text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 flex items-center justify-center transition-colors"
+              aria-label="Toggle Theme"
+            >
+              <i className={`bi ${theme === 'dark' ? 'bi-sun-fill text-amber-400' : 'bi-moon-stars-fill'}`}></i>
+            </button>
+
+            {/* Login */}
+            <Link
+              to="/login"
+              className="text-sm font-bold text-slate-700 dark:text-slate-200 hover:text-brand-600 px-3 py-2 transition-colors"
+            >
+              Sign In
+            </Link>
+
+            {/* Primary Blue Button (Anaverse style "Daftar Online") */}
+            <Link
+              to="/add-business"
+              className="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 active:scale-95 text-white font-bold text-sm px-5 py-2.5 rounded-xl shadow-md shadow-brand-600/25 transition-all duration-200"
+            >
+              <i className="bi bi-calendar-check"></i>
+              <span>Add Listing</span>
             </Link>
           </div>
 
-          <div className="hidden lg:flex items-center flex-1 justify-center max-w-lg mx-auto ">
-            <div className="relative w-full">
-              <input
-                id="desktop-search-input"
-                type="search"
-                placeholder="Search attractions, history, or location..."
-                className="w-full lg:w-56 xl:w-96 pl-10 pr-4 py-2 border border-gray-200 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-400 transition bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
-              />
-              <i className="bi bi-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-            </div>
-          </div>
-
-          <div className="hidden lg:flex space-x-6 items-center text-lg text-gray-700 dark:text-gray-200 font-bold whitespace-nowrap">
-            <Link to="/government" className="hover:text-black dark:hover:text-white">Government</Link>
-            <Link to="/announcements" className="hover:text-black dark:hover:text-white">Announcements</Link>
-            <Link to="/emergency" className="hover:text-black dark:hover:text-white">Emergency</Link>
-
-            <div className="relative group">
-              <button className="flex items-center gap-1 hover:text-black dark:hover:text-white text-lg transition-colors duration-300" aria-haspopup="true">
-                Categories <i className="bi bi-chevron-down text-sm text-black dark:text-white"></i>
-              </button>
-              <div className="absolute top-full left-0 mt-3 w-56 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transform -translate-y-2 group-hover:translate-y-0 transition-all duration-300 z-10 border border-gray-100 dark:border-gray-700">
-                <Link to="/business" className="block px-6 py-3 hover:bg-blue-50 dark:hover:bg-gray-700 first:rounded-t-lg text-lg font-bold transition-colors duration-300 hover:text-black dark:hover:text-white">Business</Link>
-                <Link to="/health" className="block px-6 py-3 hover:bg-blue-50 dark:hover:bg-gray-700 text-lg font-bold transition-colors duration-300 hover:text-black dark:hover:text-white">Health Services</Link>
-                <Link to="/education" className="block px-6 py-3 hover:bg-blue-50 dark:hover:bg-gray-700 text-lg font-bold transition-colors duration-300 hover:text-black dark:hover:text-white">Education</Link>
-                <Link to="/restaurants" className="block px-6 py-3 hover:bg-blue-50 dark:hover:bg-gray-700 text-lg font-bold transition-colors duration-300 hover:text-black dark:hover:text-white">Restaurants</Link>
-                <Link to="/markets" className="block px-6 py-3 hover:bg-blue-50 dark:hover:bg-gray-700 text-lg font-bold transition-colors duration-300 hover:text-black dark:hover:text-white">Markets</Link>
-                <Link to="/tourism" className="block px-6 py-3 hover:bg-blue-50 dark:hover:bg-gray-700 last:rounded-b-lg text-lg font-bold transition-colors duration-300 hover:text-black dark:hover:text-white">Tourism</Link>
-              </div>
-            </div>
-
-            <Link to="/about" className="hover:text-black dark:hover:text-white">About</Link>
-            <Link to="/admin" className="hover:text-black dark:hover:text-white">Admin</Link>
-
+          {/* Mobile Hamburger & Theme Toggle */}
+          <div className="flex items-center gap-2 lg:hidden">
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              aria-label="Toggle Dark Mode"
+              className="w-9 h-9 rounded-lg bg-slate-100 dark:bg-dark-800 text-slate-600 dark:text-slate-300 flex items-center justify-center"
+              aria-label="Toggle Theme"
             >
-              <i className={`bi ${theme === 'dark' ? 'bi-sun-fill text-yellow-400' : 'bi-moon-fill text-gray-600'} text-xl`}></i>
+              <i className={`bi ${theme === 'dark' ? 'bi-sun-fill text-amber-400' : 'bi-moon-stars-fill'}`}></i>
             </button>
 
-            <div className="hidden lg:flex md:ml-3 items-center space-x-4 flex-shrink-0">
-              <Link to="/login" className="text-lg border border-gray-300 dark:border-gray-600 px-5 py-2 rounded hover:bg-green-600 hover:text-white dark:hover:bg-green-600 transition whitespace-nowrap">
-                Sign in
-              </Link>
-              <Link to="/add-business" className="text-lg bg-black text-white px-5 py-2 rounded hover:bg-gray-800 dark:hover:bg-gray-700 transition whitespace-nowrap">
-                Add
-              </Link>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-4 lg:hidden">
             <button
-              onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              aria-label="Toggle Dark Mode"
-            >
-              <i className={`bi ${theme === 'dark' ? 'bi-sun-fill text-yellow-400' : 'bi-moon-fill text-gray-600'} text-xl`}></i>
-            </button>
-            <button
-              id="mobile-menu-btn"
-              className="text-gray-700 dark:text-white focus:outline-none"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="w-9 h-9 rounded-lg bg-brand-50 dark:bg-dark-800 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xl"
+              aria-label="Open Menu"
             >
-              <i className="bi bi-list text-3xl"></i>
+              <i className={`bi ${isMobileMenuOpen ? 'bi-x-lg' : 'bi-list'}`}></i>
             </button>
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        <div id="mobile-menu" className={`${isMobileMenuOpen ? 'block' : 'hidden'} lg:hidden border-t border-gray-300 dark:border-gray-700 ml-5 bg-white dark:bg-gray-900`}>
-          <div className="px-4 py-4 space-y-3">
-            <div className="mb-4 relative">
-              <input id="mobile-search-input" type="search" placeholder="Search..." className="w-full pl-10 pr-4 py-2 border border-gray-200 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400" />
-              <i className="bi bi-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-            </div>
+        {/* Mobile Navigation Drawer */}
+        {isMobileMenuOpen && (
+          <div className="lg:hidden mt-3 p-4 bg-white dark:bg-dark-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-xl animate-fade-up">
+            <div className="flex flex-col gap-2">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  onClick={closeMenu}
+                  className="px-4 py-2.5 text-sm font-bold text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-slate-700/50 rounded-xl transition-colors"
+                >
+                  {link.name}
+                </Link>
+              ))}
 
-            <Link to="/government" onClick={closeMenu} className="block text-lg text-gray-700 dark:text-gray-200 hover:text-black dark:hover:text-white">Government</Link>
-            <Link to="/about" onClick={closeMenu} className="block text-lg text-gray-700 dark:text-gray-200 hover:text-black dark:hover:text-white">About</Link>
-
-            <div className="relative">
               <button
                 onClick={() => setIsCategoriesOpen(!isCategoriesOpen)}
-                className="w-full flex justify-between items-center text-lg text-gray-700 dark:text-gray-200 hover:text-black dark:hover:text-white focus:outline-none"
+                className="flex items-center justify-between px-4 py-2.5 text-sm font-bold text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-slate-700/50 rounded-xl transition-colors"
               >
-                Categories
-                <i className={`bi bi-chevron-down text-sm transition-transform duration-300 ${isCategoriesOpen ? 'rotate-180' : ''}`}></i>
+                <span>Categories</span>
+                <i className={`bi bi-chevron-down text-xs transition-transform ${isCategoriesOpen ? 'rotate-180' : ''}`}></i>
               </button>
 
-              <div className={`${isCategoriesOpen ? 'block' : 'hidden'} pl-4 mt-2 space-y-2 border-l-2 border-gray-100 dark:border-gray-700`}>
-                <Link to="/business" onClick={closeMenu} className="block text-base text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white py-1">Business</Link>
-                <Link to="/health" onClick={closeMenu} className="block text-base text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white py-1">Health Services</Link>
-                <Link to="/education" onClick={closeMenu} className="block text-base text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white py-1">Education</Link>
-                <Link to="/restaurants" onClick={closeMenu} className="block text-base text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white py-1">Restaurants</Link>
-                <Link to="/markets" onClick={closeMenu} className="block text-base text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white py-1">Markets</Link>
-                <Link to="/tourism" onClick={closeMenu} className="block text-base text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white py-1">Tourism</Link>
+              {isCategoriesOpen && (
+                <div className="pl-4 pr-2 py-2 flex flex-col gap-1 border-l-2 border-brand-200 dark:border-brand-900 ml-4">
+                  {categories.map((cat) => (
+                    <Link
+                      key={cat.to}
+                      to={cat.to}
+                      onClick={closeMenu}
+                      className="flex items-center gap-2.5 py-2 text-sm text-slate-600 dark:text-slate-300 hover:text-brand-600"
+                    >
+                      <i className={`bi ${cat.icon}`}></i>
+                      <span>{cat.label}</span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+
+              <div className="pt-3 border-t border-slate-100 dark:border-slate-700 mt-2 flex flex-col gap-2">
+                <Link
+                  to="/login"
+                  onClick={closeMenu}
+                  className="text-center py-2.5 text-sm font-bold text-slate-700 dark:text-slate-200 hover:bg-slate-100 rounded-xl"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  to="/add-business"
+                  onClick={closeMenu}
+                  className="text-center py-2.5 text-sm font-bold bg-brand-600 text-white rounded-xl shadow-md"
+                >
+                  Add Listing Online
+                </Link>
               </div>
             </div>
-
-            <Link to="/announcements" onClick={closeMenu} className="block text-lg text-gray-700 dark:text-gray-200 hover:text-black dark:hover:text-white">Announcements</Link>
-            <Link to="/admin" onClick={closeMenu} className="block text-lg text-gray-700 dark:text-gray-200 hover:text-black dark:hover:text-white">Admin</Link>
-
-            <div className="pt-4 border-t border-gray-100 dark:border-gray-700 flex flex-col gap-3">
-              <Link to="/login" onClick={closeMenu} className="block text-center text-lg border border-gray-300 dark:border-gray-600 px-4 py-2 rounded w-full hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-900 dark:text-white">Sign in</Link>
-              <Link to="/add-business" onClick={closeMenu} className="block text-center text-lg bg-black text-white px-4 py-2 rounded w-full hover:bg-gray-800 dark:hover:bg-gray-700">Add</Link>
-            </div>
           </div>
-        </div>
+        )}
       </div>
     </nav>
   );

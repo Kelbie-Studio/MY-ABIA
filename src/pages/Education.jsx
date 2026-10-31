@@ -179,7 +179,7 @@ export default function Education() {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white font-serif antialiased min-h-screen flex flex-col overflow-x-hidden transition-colors duration-200">
+    <div className="bg-white dark:bg-dark-900 text-gray-900 dark:text-white font-sans antialiased min-h-screen flex flex-col overflow-x-hidden transition-colors duration-200">
       <header className="relative bg-gray-900 border-b border-gray-200 dark:border-gray-800 pt-32 pb-24 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
@@ -194,13 +194,13 @@ export default function Education() {
           <h1 className="text-4xl md:text-5xl font-bold mb-5 text-white tracking-tight drop-shadow-md">
             Education & Schools in Abia
           </h1>
-          <p className="text-xl text-white max-w-2xl mx-auto font-serif mb-8 drop-shadow-md opacity-90">
+          <p className="text-xl text-white max-w-2xl mx-auto font-sans mb-8 drop-shadow-md opacity-90">
             Empowering the future. Explore top-tier universities, historic secondary schools, and learning centers across the state.
           </p>
         </div>
       </header>
 
-      <section className="bg-white dark:bg-gray-800 sticky top-20 p-3 z-40 border-b border-gray-200 dark:border-gray-700 shadow-sm transition-colors duration-200">
+      <section className="bg-white dark:bg-dark-800 sticky top-20 p-3 z-40 border-b border-gray-200 dark:border-gray-700 shadow-sm transition-colors duration-200">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="relative flex-grow group">
@@ -212,7 +212,7 @@ export default function Education() {
                 placeholder="Search by school name, level, or location..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="block w-full pl-10 pr-3 py-3 border border-gray-300 dark:border-gray-600 rounded-md leading-5 bg-gray-50 dark:bg-gray-900 placeholder-gray-600 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 sm:text-lg font-serif transition-colors shadow-sm text-gray-900 dark:text-white"
+                className="block w-full pl-10 pr-3 py-3 border border-gray-300 dark:border-gray-600 rounded-md leading-5 bg-gray-50 dark:bg-dark-900 placeholder-gray-600 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 sm:text-lg font-sans transition-colors shadow-sm text-gray-900 dark:text-white"
               />
             </div>
 
@@ -223,7 +223,7 @@ export default function Education() {
               <select
                 value={lgaFilter}
                 onChange={(e) => setLgaFilter(e.target.value)}
-                className="block w-full pl-10 pr-10 py-3 border border-gray-300 dark:border-gray-600 rounded-md leading-5 bg-gray-50 dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-green-400 sm:text-lg font-serif appearance-none cursor-pointer transition-colors shadow-sm text-gray-900 dark:text-white"
+                className="block w-full pl-10 pr-10 py-3 border border-gray-300 dark:border-gray-600 rounded-md leading-5 bg-gray-50 dark:bg-dark-900 focus:outline-none focus:ring-2 focus:ring-green-400 sm:text-lg font-sans appearance-none cursor-pointer transition-colors shadow-sm text-gray-900 dark:text-white"
               >
                 <option value="">All Locations</option>
                 {lgas.map(lga => (
@@ -236,13 +236,13 @@ export default function Education() {
             </div>
           </div>
           <div className="mt-3 flex justify-between items-center">
-            <p className="text-lg text-gray-900 dark:text-gray-300 font-serif">
+            <p className="text-lg text-gray-900 dark:text-gray-300 font-sans">
               {filteredData.length === 0 ? 'No schools found' : `Showing ${filteredData.length} institution${filteredData.length === 1 ? '' : 's'}`}
             </p>
             {(searchQuery || lgaFilter) && (
               <button
                 onClick={() => { setSearchQuery(''); setLgaFilter(''); }}
-                className="text-sm text-green-600 hover:text-green-700 hover:underline font-serif"
+                className="text-sm text-green-600 hover:text-green-700 hover:underline font-sans"
               >
                 Reset Filters
               </button>
@@ -251,13 +251,13 @@ export default function Education() {
         </div>
       </section>
 
-      <main className="flex-grow w-full py-12 bg-white dark:bg-gray-900 transition-colors duration-200">
+      <main className="flex-grow w-full py-12 bg-white dark:bg-dark-900 transition-colors duration-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-7">
             {filteredData.map((place, idx) => (
               <div
                 key={place.id}
-                className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-0 shadow-sm hover:shadow-lg hover:border-black dark:hover:border-white transition-all duration-300 flex flex-col justify-between animate-fade-up overflow-hidden rounded-md"
+                className="bg-white dark:bg-dark-800 border border-gray-200 dark:border-gray-700 p-0 shadow-sm hover:shadow-lg hover:border-black dark:hover:border-white transition-all duration-300 flex flex-col justify-between animate-fade-up overflow-hidden rounded-md"
                 style={{ animationDelay: `${idx * 50}ms` }}
               >
                 <div>
@@ -268,7 +268,7 @@ export default function Education() {
 
                   <div className="p-6">
                     <div className="flex justify-between items-start mb-5">
-                      <span className={`${getBadgeStyles(place.category)} text-lg font-bold px-3 py-1 rounded uppercase tracking-wide font-serif`}>
+                      <span className={`${getBadgeStyles(place.category)} text-lg font-bold px-3 py-1 rounded uppercase tracking-wide font-sans`}>
                         {place.type}
                       </span>
                       {place.verified && (
@@ -282,11 +282,11 @@ export default function Education() {
                       {place.name}
                     </h3>
 
-                    <p className="text-lg font-medium text-green-600 font-serif mb-4 flex items-center gap-2">
+                    <p className="text-lg font-medium text-green-600 font-sans mb-4 flex items-center gap-2">
                       <i className="bi bi-mortarboard-fill"></i> {place.focus}
                     </p>
 
-                    <div className="space-y-2 text-lg text-gray-700 dark:text-gray-300 font-serif mt-4">
+                    <div className="space-y-2 text-lg text-gray-700 dark:text-gray-300 font-sans mt-4">
                       <p className="flex items-start gap-2">
                         <i className="bi bi-geo-alt mt-0.5 text-gray-500"></i>
                         <span>{place.address}, <strong>{place.lga}</strong></span>
@@ -295,7 +295,7 @@ export default function Education() {
                   </div>
                 </div>
 
-                <div className="px-6 pb-6 pt-2 flex flex-col sm:flex-row gap-4 font-serif border-t border-transparent">
+                <div className="px-6 pb-6 pt-2 flex flex-col sm:flex-row gap-4 font-sans border-t border-transparent">
                   <button className="flex-1 bg-black dark:bg-white text-white dark:text-black py-2 rounded-md text-lg font-bold hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors">
                     View Details
                   </button>
@@ -319,11 +319,11 @@ export default function Education() {
 
           {filteredData.length === 0 && (
             <div className="text-center py-20">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 dark:bg-gray-800 mb-5">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 dark:bg-dark-800 mb-5">
                 <i className="bi bi-mortarboard text-2xl text-gray-400"></i>
               </div>
               <h3 className="text-xl font-medium text-gray-900 dark:text-white">No schools found</h3>
-              <p className="text-gray-700 dark:text-gray-400 mt-2 font-serif">Try searching for "University", "College", or "Umuahia".</p>
+              <p className="text-gray-700 dark:text-gray-400 mt-2 font-sans">Try searching for "University", "College", or "Umuahia".</p>
             </div>
           )}
         </div>
