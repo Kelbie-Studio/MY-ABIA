@@ -107,7 +107,7 @@ export default function Announcements() {
             onClick={() => setFilter(cat.id)}
             className={`px-6 py-2 rounded-full text-lg font-semibold transition-all duration-300 border ${filter === cat.id
                 ? 'bg-blue-900 text-white border-transparent shadow-md'
-                : 'bg-white dark:bg-dark-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:border-blue-900 dark:hover:border-blue-500 hover:text-blue-900 dark:hover:text-blue-400'
+                : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:border-blue-900 dark:hover:border-blue-500 hover:text-blue-900 dark:hover:text-blue-400'
               }`}
           >
             {cat.label}

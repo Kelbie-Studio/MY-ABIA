@@ -54,13 +54,13 @@ export default function Emergency() {
       </section>
 
       {/* Main Services Grid */}
-      <section className="px-4 py-20 mt-16 w-full bg-white dark:bg-dark-900 transition-colors duration-200">
+      <section className="px-4 py-20 mt-16 w-full bg-white dark:bg-gray-900 transition-colors duration-200">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
             {emergencyServices.map((service, index) => (
               <div
                 key={index}
-                className="shadow-lg overflow-hidden bg-white dark:bg-dark-800 border border-gray-300 dark:border-gray-700 hover:border-black dark:hover:border-gray-500 hover:shadow-2xl transition duration-300 rounded-lg flex flex-col"
+                className="shadow-lg overflow-hidden bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 hover:border-black dark:hover:border-gray-500 hover:shadow-2xl transition duration-300 rounded-lg flex flex-col"
               >
                 <div className={`border-t-4 ${service.borderColor}`}></div>
                 <img src={service.img} alt={service.title} className="w-full h-48 object-cover" />
@@ -86,7 +86,7 @@ export default function Emergency() {
       </section>
 
       {/* More Services */}
-      <section className="px-4 py-16 w-full bg-gray-50 dark:bg-dark-800 border-t border-gray-200 dark:border-gray-700 transition-colors duration-200">
+      <section className="px-4 py-16 w-full bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 transition-colors duration-200">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <p className="text-green-600 dark:text-green-400 font-bold mb-2 text-lg uppercase tracking-wide">More Services</p>
@@ -98,7 +98,7 @@ export default function Emergency() {
             {moreServices.map((item, index) => (
               <div
                 key={index}
-                className="rounded-lg shadow-md p-8 bg-white dark:bg-dark-900 hover:shadow-xl transition duration-300 h-full border border-gray-100 dark:border-gray-700"
+                className="rounded-lg shadow-md p-8 bg-white dark:bg-gray-900 hover:shadow-xl transition duration-300 h-full border border-gray-100 dark:border-gray-700"
               >
                 <div className="mb-4">
                   <i className={`bi ${item.icon} text-3xl ${item.color}`}></i>

@@ -50,7 +50,7 @@ export default function Health() {
   );
 
   return (
-    <div className="bg-white dark:bg-dark-900 text-gray-900 dark:text-white font-sans antialiased overflow-x-hidden transition-colors duration-200">
+    <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white font-serif antialiased overflow-x-hidden transition-colors duration-200">
       {/* Hero Section */}
       <section
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1538108149393-fbbd81895907?q=80&w=2000')" }}
@@ -85,7 +85,7 @@ export default function Health() {
       </section>
 
       {/* Providers Grid */}
-      <section className="py-24 bg-white dark:bg-dark-900">
+      <section className="py-24 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 animate-fade-up">
             <span className="text-lg font-bold text-gray-700 dark:text-gray-400">Browse</span>
@@ -99,7 +99,7 @@ export default function Health() {
                 <Link
                   key={provider.id}
                   to={provider.name.includes('Abia State University') ? '/health/absuth' : '#'}
-                  className="border border-gray-300 dark:border-gray-700 p-8 rounded-sm hover:shadow-lg transition cursor-pointer bg-white dark:bg-dark-800 flex flex-col justify-between h-full group animate-fade-up"
+                  className="border border-gray-300 dark:border-gray-700 p-8 rounded-sm hover:shadow-lg transition cursor-pointer bg-white dark:bg-gray-800 flex flex-col justify-between h-full group animate-fade-up"
                 >
                   <div>
                     <div className={`w-10 h-10 border-2 ${provider.isCustomIcon ? 'border-black dark:border-white' : 'border-gray-300 dark:border-gray-600'} rounded flex items-center justify-center text-gray-900 dark:text-white mb-6 group-hover:bg-black dark:group-hover:bg-white group-hover:text-white dark:group-hover:text-black transition`}>
@@ -122,10 +122,10 @@ export default function Health() {
                 className="lg:col-span-1 border border-gray-200 dark:border-gray-700 shadow-sm rounded-sm flex flex-col h-full group animate-fade-up"
                 style={{ animationDelay: '100ms' }}
               >
-                <div className="bg-gray-200 dark:bg-dark-800 h-64 w-full flex items-center justify-center overflow-hidden">
+                <div className="bg-gray-200 dark:bg-gray-800 h-64 w-full flex items-center justify-center overflow-hidden">
                   <img src={provider.img} alt={provider.name} className="group-hover:scale-110 transition duration-500 w-full h-full object-cover" />
                 </div>
-                <div className="p-8 flex flex-col flex-grow bg-white dark:bg-dark-800">
+                <div className="p-8 flex flex-col flex-grow bg-white dark:bg-gray-800">
                   <span className="text-lg font-bold text-green-600 mb-2 block">{provider.status}</span>
                   <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">{provider.name}</h3>
                   <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">{provider.location}</p>

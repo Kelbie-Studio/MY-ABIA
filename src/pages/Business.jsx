@@ -35,7 +35,7 @@ export default function Business() {
   };
 
   return (
-    <div className="bg-white dark:bg-dark-900 text-gray-900 dark:text-white font-sans antialiased overflow-x-hidden transition-colors duration-200">
+    <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white font-serif antialiased overflow-x-hidden transition-colors duration-200">
       {/* Informational Header Section from business-economy.html */}
       <section className="w-full mt-10 mb-20">
         <div className="max-w-7xl mx-auto px-4">
@@ -92,7 +92,7 @@ export default function Business() {
               }
             ].map((item, idx) => (
               <div key={idx} className={`flex flex-col ${item.reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-center border border-black dark:border-gray-700 card-hover animate-fade-up`}>
-                <div className="w-full md:w-1/2 h-64 md:h-auto bg-gray-100 dark:bg-dark-800 flex items-center justify-center overflow-hidden relative group">
+                <div className="w-full md:w-1/2 h-64 md:h-auto bg-gray-100 dark:bg-gray-800 flex items-center justify-center overflow-hidden relative group">
                   <img src={item.img} alt={item.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                 </div>
                 <div className="w-full md:w-1/2 p-8 md:p-12">
@@ -111,7 +111,7 @@ export default function Business() {
       {/* Submission Form Section from Business-sector.html */}
       <main className="pt-24 pb-16 transition-all duration-300 border-t border-gray-200 dark:border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <section className="bg-white dark:bg-dark-800 rounded-2xl shadow-sm p-6 md:p-10 mb-8 transition-all duration-300 hover:shadow-lg">
+          <section className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm p-6 md:p-10 mb-8 transition-all duration-300 hover:shadow-lg">
             <div className="flex flex-col lg:flex-row items-center gap-6">
               <div className="flex-1">
                 <p className="text-lg font-bold mb-2">Grow</p>
@@ -132,7 +132,7 @@ export default function Business() {
           </section>
 
           <section id="business-form" className="grid grid-cols-1 lg:grid-cols-3 gap-8 scroll-mt-24">
-            <div className="lg:col-span-2 bg-white dark:bg-dark-800 rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-lg transition-shadow duration-300">
+            <div className="lg:col-span-2 bg-white dark:bg-gray-800 rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-lg transition-shadow duration-300">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-base font-medium mb-2 text-lg">Business name</label>
@@ -143,7 +143,7 @@ export default function Business() {
                     required
                     value={formData.name}
                     onChange={handleInputChange}
-                    className="w-full rounded-lg border-2 border-gray-200 dark:border-gray-700 dark:bg-dark-900 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-400 transition-all duration-300"
+                    className="w-full rounded-lg border-2 border-gray-200 dark:border-gray-700 dark:bg-gray-900 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-400 transition-all duration-300"
                   />
                 </div>
 
@@ -156,7 +156,7 @@ export default function Business() {
                       type="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="w-full rounded-lg border-2 border-gray-200 dark:border-gray-700 dark:bg-dark-900 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-400 transition-all duration-300"
+                      className="w-full rounded-lg border-2 border-gray-200 dark:border-gray-700 dark:bg-gray-900 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-400 transition-all duration-300"
                     />
                   </div>
                   <div>
@@ -167,7 +167,7 @@ export default function Business() {
                       type="tel"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      className="w-full rounded-lg border-2 border-gray-200 dark:border-gray-700 dark:bg-dark-900 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-400 transition-all duration-300"
+                      className="w-full rounded-lg border-2 border-gray-200 dark:border-gray-700 dark:bg-gray-900 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-400 transition-all duration-300"
                     />
                   </div>
                 </div>
@@ -181,7 +181,7 @@ export default function Business() {
                     required
                     value={formData.description}
                     onChange={handleInputChange}
-                    className="w-full rounded-lg border-2 border-gray-200 dark:border-gray-700 dark:bg-dark-900 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-400 transition-all duration-300"
+                    className="w-full rounded-lg border-2 border-gray-200 dark:border-gray-700 dark:bg-gray-900 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-400 transition-all duration-300"
                     placeholder="Tell customers what you do..."
                   ></textarea>
                 </div>
@@ -233,7 +233,7 @@ export default function Business() {
                   >
                     Subscribe
                   </button>
-                  <button className="w-full inline-flex items-center justify-center px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg text-lg bg-white dark:bg-dark-800 text-gray-800 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-200">
+                  <button className="w-full inline-flex items-center justify-center px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg text-lg bg-white dark:bg-gray-800 text-gray-800 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-200">
                     Learn more
                   </button>
                 </div>

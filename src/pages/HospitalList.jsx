@@ -36,7 +36,7 @@ export default function HospitalList() {
   });
 
   return (
-    <div className="bg-white dark:bg-dark-900 text-gray-900 dark:text-white font-sans antialiased min-h-screen flex flex-col transition-colors duration-200">
+    <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white font-serif antialiased min-h-screen flex flex-col transition-colors duration-200">
       <header
         style={{
           backgroundImage: "url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2000&auto=format&fit=crop')",
@@ -48,14 +48,14 @@ export default function HospitalList() {
           <h1 className="text-4xl md:text-5xl font-bold mb-5 text-white tracking-tight drop-shadow-md">
             Health Facilities in Abia
           </h1>
-          <p className="text-xl text-white max-w-2xl mx-auto font-sans mb-8 drop-shadow-md opacity-90">
+          <p className="text-xl text-white max-w-2xl mx-auto font-serif mb-8 drop-shadow-md opacity-90">
             A comprehensive directory of hospitals, clinics, and primary health centers across all Local Government Areas.
           </p>
         </div>
       </header>
 
       {/* Filter Section */}
-      <section className="bg-white dark:bg-dark-800 sticky top-20 z-40 p-3 border-b border-gray-200 dark:border-gray-700 shadow-sm transition-colors duration-200">
+      <section className="bg-white dark:bg-gray-800 sticky top-20 z-40 p-3 border-b border-gray-200 dark:border-gray-700 shadow-sm transition-colors duration-200">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="relative flex-grow group">
@@ -67,7 +67,7 @@ export default function HospitalList() {
                 placeholder="Search hospital name, address, or type..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="block w-full pl-10 pr-3 py-3 border border-gray-300 dark:border-gray-600 rounded-md leading-5 bg-gray-50 dark:bg-dark-900 placeholder-gray-600 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 sm:text-lg font-sans transition-colors shadow-sm text-gray-900 dark:text-white"
+                className="block w-full pl-10 pr-3 py-3 border border-gray-300 dark:border-gray-600 rounded-md leading-5 bg-gray-50 dark:bg-gray-900 placeholder-gray-600 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 sm:text-lg font-serif transition-colors shadow-sm text-gray-900 dark:text-white"
               />
             </div>
 
@@ -78,7 +78,7 @@ export default function HospitalList() {
               <select
                 value={lgaFilter}
                 onChange={(e) => setLgaFilter(e.target.value)}
-                className="block w-full pl-10 pr-10 py-3 border border-gray-300 dark:border-gray-600 rounded-md leading-5 bg-gray-50 dark:bg-dark-900 focus:outline-none focus:ring-2 focus:ring-green-400 sm:text-lg font-sans appearance-none cursor-pointer transition-colors shadow-sm text-gray-900 dark:text-white"
+                className="block w-full pl-10 pr-10 py-3 border border-gray-300 dark:border-gray-600 rounded-md leading-5 bg-gray-50 dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-green-400 sm:text-lg font-serif appearance-none cursor-pointer transition-colors shadow-sm text-gray-900 dark:text-white"
               >
                 <option value="">All Locations</option>
                 {lgas.map(lga => (
@@ -91,13 +91,13 @@ export default function HospitalList() {
       </section>
 
       {/* Facility Grid */}
-      <main className="flex-grow w-full py-12 bg-white dark:bg-dark-900">
+      <main className="flex-grow w-full py-12 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredFacilities.map((facility) => (
               <div
                 key={facility.id}
-                className="bg-white dark:bg-dark-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col rounded-md overflow-hidden animate-fade-up"
+                className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col rounded-md overflow-hidden animate-fade-up"
               >
                 <div className="h-48 w-full overflow-hidden relative group">
                   <img src={facility.image} alt={facility.name} className="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
@@ -138,7 +138,7 @@ export default function HospitalList() {
         </div>
       </main>
 
-      <div className="py-12 bg-white dark:bg-dark-900 border-t border-gray-200 dark:border-gray-800 text-center">
+      <div className="py-12 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 text-center">
         <Link to="/health" className="inline-flex items-center text-lg font-bold text-green-600 hover:underline">
           <i className="bi bi-chevron-left mr-2"></i> Back to Health Services
         </Link>
