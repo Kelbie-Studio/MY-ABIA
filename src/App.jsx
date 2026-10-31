@@ -23,7 +23,7 @@ function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider>
-        <BrowserRouter>
+        <BrowserRouter basename="/MY-ABIA-">
           <ScrollToTop />
           <Routes>
             <Route path="/" element={<Layout />}>
